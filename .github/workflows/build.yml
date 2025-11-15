@@ -57,7 +57,7 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Ensure tag matches package.json version
+      - name: Version Check/Update
         run: |
           TAG="${{ github.event.release.tag_name }}"
           # strip leading "v" if you use tags like "v1.2.3"
@@ -69,13 +69,17 @@ jobs:
           echo "package.json ver:  $PKG_VERSION"
 
           if [ "$TAG_STRIPPED" != "$PKG_VERSION" ]; then
-            echo "ERROR: Tag ($TAG_STRIPPED) does not match package.json version ($PKG_VERSION)"
-            exit 1
+            echo "Tag and package.json version differ."
+            echo "Updating package.json version to ${TAG_STRIPPED}..."
+            npm version "$TAG_STRIPPED" --no-git-tag-version
+            echo "Updated package.json version:"
+            node -p "require('./package.json').version"
+          else
+            echo "Tag matches package.json version. No change needed."
           fi
 
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # publish as usual; tag/version already set by package.json + git tag
           npm publish --access public
