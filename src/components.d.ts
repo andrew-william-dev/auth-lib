@@ -5,37 +5,43 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DropDownItems } from "./components/as-header/constant";
+export { DropDownItems } from "./components/as-header/constant";
 export namespace Components {
-    interface LoginPop {
-        "appID": string;
-        "appName": string;
+    interface AsHeader {
+        "appTitle": string;
+        "items": DropDownItems[];
+        "logoutFunction": (event: PointerEvent) => void;
+        "userName": string;
     }
 }
 declare global {
-    interface HTMLLoginPopElement extends Components.LoginPop, HTMLStencilElement {
+    interface HTMLAsHeaderElement extends Components.AsHeader, HTMLStencilElement {
     }
-    var HTMLLoginPopElement: {
-        prototype: HTMLLoginPopElement;
-        new (): HTMLLoginPopElement;
+    var HTMLAsHeaderElement: {
+        prototype: HTMLAsHeaderElement;
+        new (): HTMLAsHeaderElement;
     };
     interface HTMLElementTagNameMap {
-        "login-pop": HTMLLoginPopElement;
+        "as-header": HTMLAsHeaderElement;
     }
 }
 declare namespace LocalJSX {
-    interface LoginPop {
-        "appID"?: string;
-        "appName"?: string;
+    interface AsHeader {
+        "appTitle"?: string;
+        "items"?: DropDownItems[];
+        "logoutFunction"?: (event: PointerEvent) => void;
+        "userName"?: string;
     }
     interface IntrinsicElements {
-        "login-pop": LoginPop;
+        "as-header": AsHeader;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "login-pop": LocalJSX.LoginPop & JSXBase.HTMLAttributes<HTMLLoginPopElement>;
+            "as-header": LocalJSX.AsHeader & JSXBase.HTMLAttributes<HTMLAsHeaderElement>;
         }
     }
 }

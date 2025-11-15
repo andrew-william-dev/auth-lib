@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-    <script type="module" src="/build/authlib.esm.js"></script>
-    <script nomodule src="/build/authlib.js"></script>
-  </head>
-  <body>
-    <login-pop app-name="Application"></login-pop>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="/build/authlib.esm.js"></script>
+  <script nomodule src="/build/authlib.js"></script>
+</head>
+<body>
+<as-header user-name="Andrew Staines" app-title="AS Auth"></as-header>
+
+<script>
+  const header = document.querySelector('as-header');
+
+  header.items = [
+    {
+      name: "Profile",
+      onClick: () => console.log("Profile clicked")
+    },
+    {
+      name: "Settings",
+      onClick: () => console.log("Settings clicked")
+    }
+  ];
+  header.logoutFunction = () => console.log("Logout clicked")
+</script>
+</body>
 </html>
