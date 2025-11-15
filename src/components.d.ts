@@ -5,57 +5,43 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DropDownItems } from "./components/as-header/constant";
+export { DropDownItems } from "./components/as-header/constant";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface AsHeader {
+        "appTitle": string;
+        "items": DropDownItems[];
+        "logoutFunction": (event: PointerEvent) => void;
+        "userName": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLAsHeaderElement extends Components.AsHeader, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLAsHeaderElement: {
+        prototype: HTMLAsHeaderElement;
+        new (): HTMLAsHeaderElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "as-header": HTMLAsHeaderElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface AsHeader {
+        "appTitle"?: string;
+        "items"?: DropDownItems[];
+        "logoutFunction"?: (event: PointerEvent) => void;
+        "userName"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "as-header": AsHeader;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "as-header": LocalJSX.AsHeader & JSXBase.HTMLAttributes<HTMLAsHeaderElement>;
         }
     }
 }
